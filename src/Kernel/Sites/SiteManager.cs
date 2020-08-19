@@ -18,7 +18,10 @@ namespace FieldFallback.Sites
             SiteInfo site = Sitecore.Configuration.Factory.GetSiteInfo(siteName);
             if (site != null)
             {
-                site.Properties.Add(SITE_ENABLE_FALLBACK_ATTRIBUTE, SITE_ENABLED_VALUE);
+                if (site.Properties[SITE_ENABLE_FALLBACK_ATTRIBUTE] == null)
+                {
+                    site.Properties.Add(SITE_ENABLE_FALLBACK_ATTRIBUTE, SITE_ENABLED_VALUE);
+                }
             }
         }
 
