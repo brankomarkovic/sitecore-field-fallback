@@ -29,4 +29,4 @@ using System.Reflection;
 [assembly: AssemblyProduct("FieldFallback Kernel")]
 [assembly: AssemblyCompany("Hedgehog Development, LLC http://hhogdev.com")]
 [assembly: AssemblyCopyright("Copyright © 2012 Hedgehog Development, LLC (http://hhogdev.com)")]
-[assembly: AssemblyVersion("1.3.0")]
+[assembly: AssemblyVersion("1.3.1")]

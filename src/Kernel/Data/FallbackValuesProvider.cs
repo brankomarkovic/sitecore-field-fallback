@@ -348,7 +348,10 @@ namespace FieldFallback.Data
         {
             // get the path once!
             // Each call to `item.Paths.Path` will walk up the tree
-            string itemPath = item.Paths.Path.ToLower();
+            string itemPathCache = item.Database.Caches.ItemPathsCache?.GetItemPath(item, ItemPathType.Name);
+            var fullPath = !string.IsNullOrEmpty(itemPathCache) ? itemPathCache : item.Paths.FullPath;
+
+            string itemPath = fullPath.ToLower();
 
             // `item.Paths.IsContentItem` is what we can use, but again, this will walk up the tree each time
             bool isContentOrMediaItem = itemPath.StartsWith("/sitecore/content/", StringComparison.OrdinalIgnoreCase) 

@@ -63,7 +63,11 @@ namespace FieldFallback.Caching
         protected virtual string GetGeneralItemKeyPrefix(Item item)
         {
             // item.Paths.Path is fairly expensive, but we need it here to support clearing trees
-            return string.Format("sitecore://{0}/{1}", item.Database.Name, item.Paths.Path);
+            string itemPathCache = item.Database.Caches.ItemPathsCache?.GetItemPath(item, ItemPathType.Name);
+
+            var fullPath = !string.IsNullOrEmpty(itemPathCache) ? itemPathCache : item.Paths.FullPath;
+
+            return string.Format("sitecore://{0}/{1}", item.Database.Name, fullPath);
         }
 
         protected virtual string GetSpecificItemKeyPrefix(Item item)
